@@ -1,7 +1,7 @@
 import * as React from "react";
 import data from "./exported.json";
-var _ = require("lodash");
-var Highcharts = require("highcharts/highstock");
+const _ = require("lodash");
+const Highcharts = require("highcharts/highstock");
 
 export interface ReportsProps {}
 export interface ReportsState {
