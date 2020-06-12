@@ -1,47 +1,33 @@
 import * as React from "react";
-import data from "./exported.json";
 
-const _ = require("lodash");
 const Highcharts = require("highcharts/highstock");
 
-export interface ReportsProps {}
-
-export interface ReportsState {
+export interface ReportsProps {
   data: any;
 }
+
+export interface ReportsState {}
 
 export default class TotalProductivity extends React.Component<
   ReportsProps,
   ReportsState
 > {
-  constructor(props: ReportsProps) {
-    super(props);
-    this.state = {
-      data: data,
-    };
-  }
-
   componentDidMount = () => {
-    this.createBarChart();
+    this.createBarChart(this.props.data);
   };
 
   seriesDataGenerator = (dataToReport) => {
     let results: any = { yellow: 0, blue: 0, green: 0 };
 
-    dataToReport.map((item) => {
+    dataToReport.forEach((item) => {
       results[item.type] += 1;
     });
-
-    console.log(results);
 
     return results;
   };
 
-  createBarChart = () => {
-    let categories: Date[] = [];
-    let dataToReport = this.state.data.cards.filter(
-      (item) => item.dueComplete === true
-    );
+  createBarChart = (data) => {
+    let dataToReport = data.cards.filter((item) => item.dueComplete === true);
 
     dataToReport.forEach((element) => {
       element.type = element.labels[0].color;

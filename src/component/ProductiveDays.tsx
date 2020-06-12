@@ -1,25 +1,18 @@
 import * as React from "react";
-import data from "./exported.json";
 const _ = require("lodash");
 const Highcharts = require("highcharts/highstock");
 
-export interface ReportsProps {}
-export interface ReportsState {
+export interface ReportsProps {
   data: any;
 }
+export interface ReportsState {}
 
 export default class ProductiveDays extends React.Component<
   ReportsProps,
   ReportsState
 > {
-  constructor(props: ReportsProps) {
-    super(props);
-    this.state = {
-      data: data,
-    };
-  }
   componentDidMount = () => {
-    this.createBarChart();
+    this.createBarChart(this.props.data);
   };
 
   seriesDataGenerator = (formattedDates, dataToReport) => {
@@ -36,11 +29,9 @@ export default class ProductiveDays extends React.Component<
     return results;
   };
 
-  createBarChart = () => {
+  createBarChart = (data) => {
     let categories: Date[] = [];
-    let dataToReport = this.state.data.cards.filter(
-      (item) => item.dueComplete === true
-    );
+    let dataToReport = data.cards.filter((item) => item.dueComplete === true);
 
     dataToReport.map((item) =>
       categories.push(new Date(new Date(item.due).toDateString()))
