@@ -35,22 +35,6 @@ export default class TotalProductivity extends React.Component<
 
     dataToReport = this.seriesDataGenerator(dataToReport);
 
-    Highcharts.setOptions({
-      colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-        return {
-          radialGradient: {
-            cx: 0.5,
-            cy: 0.3,
-            r: 0.7,
-          },
-          stops: [
-            [0, color],
-            [1, Highcharts.color(color).brighten(-0.3).get("rgb")], // darken
-          ],
-        };
-      }),
-    });
-
     // Build the chart
     Highcharts.chart("container2", {
       chart: {
@@ -85,9 +69,13 @@ export default class TotalProductivity extends React.Component<
         {
           name: "Share",
           data: [
-            { name: "Work", y: dataToReport.yellow },
-            { name: "Personal Development", y: dataToReport.green },
-            { name: "Misc.", y: dataToReport.blue },
+            { name: "Work", y: dataToReport.yellow, color: "#2A69AC" },
+            {
+              name: "Personal Development",
+              y: dataToReport.green,
+              color: "#38B2AC",
+            },
+            { name: "Misc.", y: dataToReport.blue, color: "#F6AD55" },
           ],
         },
       ],
