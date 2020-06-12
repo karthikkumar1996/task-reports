@@ -47,7 +47,7 @@ export default class TotalProductivity extends React.Component<
         text: "Total Productivity",
       },
       tooltip: {
-        pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+        pointFormat: "count: <b>{point.y}</b>",
       },
       accessibility: {
         point: {
