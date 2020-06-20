@@ -83,7 +83,7 @@ export const MonthlyProductivity: React.FunctionComponent<ReportsProps> = (
         type: "areaspline",
       },
       title: {
-        text: "Average fruit consumption during one week",
+        text: "Monthly Productivity",
       },
       legend: {
         layout: "vertical",
@@ -110,11 +110,6 @@ export const MonthlyProductivity: React.FunctionComponent<ReportsProps> = (
       credits: {
         enabled: false,
       },
-      plotOptions: {
-        areaspline: {
-          fillOpacity: 0.5,
-        },
-      },
       series: [
         {
           name: "Total",
@@ -127,14 +122,14 @@ export const MonthlyProductivity: React.FunctionComponent<ReportsProps> = (
           color: "#2A69AC",
         },
         {
-          name: "Personal development",
-          data: pdData,
-          color: "#38B2AC",
-        },
-        {
           name: "Misc",
           data: miscData,
           color: "#F6AD55",
+        },
+        {
+          name: "Personal development",
+          data: pdData,
+          color: "#38B2AC",
         },
       ],
     });
