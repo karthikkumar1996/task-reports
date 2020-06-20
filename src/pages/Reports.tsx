@@ -36,14 +36,14 @@ export default class Reports extends React.Component<
       <>
         {this.state.data ? (
           <>
-            <div className="m-4">
+            <div className="m-4 mt-5 border shadow bg-white rounded">
               <ProductiveDays data={JSON.parse(JSON.stringify(data))} />
             </div>
             <div className="d-flex justify-content-between m-4">
-              <div className="p-2 w-50 mr-2">
+              <div className="p-2 w-50 mr-2 border shadow bg-white rounded">
                 <TotalProductivity data={JSON.parse(JSON.stringify(data))} />
               </div>
-              <div className="p-2 w-50">
+              <div className="p-2 w-50 border shadow bg-white rounded">
                 <MonthlyProductivity data={JSON.parse(JSON.stringify(data))} />
               </div>
             </div>
