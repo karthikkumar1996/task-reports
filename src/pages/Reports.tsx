@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Box, Stack } from "@chakra-ui/core";
 import { ProductiveDays } from "../component/ProductiveDays";
 import TotalProductivity from "../component/TotalProductivity";
 import { MonthlyProductivity } from "../component/MonthlyProductivity";
@@ -37,17 +36,17 @@ export default class Reports extends React.Component<
       <>
         {this.state.data ? (
           <>
-            <Box bg="grey" flex="1" p={4} color="white">
+            <div className="m-4">
               <ProductiveDays data={JSON.parse(JSON.stringify(data))} />
-            </Box>
-            <Stack isInline spacing={0} align="center">
-              <Box bg="grey" flex="1" p={4} marginRight={0} color="white">
+            </div>
+            <div className="d-flex justify-content-between m-4">
+              <div className="p-2 w-50 mr-2">
                 <TotalProductivity data={JSON.parse(JSON.stringify(data))} />
-              </Box>
-              <Box bg="grey" flex="1" p={4} color="white">
+              </div>
+              <div className="p-2 w-50">
                 <MonthlyProductivity data={JSON.parse(JSON.stringify(data))} />
-              </Box>
-            </Stack>
+              </div>
+            </div>
           </>
         ) : null}
       </>
