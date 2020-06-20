@@ -2,20 +2,19 @@ import * as React from "react";
 const _ = require("lodash");
 const Highcharts = require("highcharts/highstock");
 
-export interface ReportsProps {
+export interface ProductiveDaysProps {
   data: any;
 }
 export interface ReportsState {}
 
-export default class ProductiveDays extends React.Component<
-  ReportsProps,
-  ReportsState
-> {
-  componentDidMount = () => {
-    this.createBarChart(this.props.data);
-  };
+export const ProductiveDays: React.FunctionComponent<ProductiveDaysProps> = (
+  props: ProductiveDaysProps
+) => {
+  React.useEffect(() => {
+    createBarChart(props.data);
+  });
 
-  seriesDataGenerator = (formattedDates, dataToReport) => {
+  const seriesDataGenerator = (formattedDates, dataToReport) => {
     let results: any = [];
     formattedDates.forEach((item, index) => {
       results.push({ date: item, yellow: 0, blue: 0, green: 0 });
@@ -24,12 +23,15 @@ export default class ProductiveDays extends React.Component<
           results[index][data.type] += 1;
         }
       });
+      if (index === 31) {
+        return;
+      }
     });
 
     return results;
   };
 
-  createBarChart = (data) => {
+  const createBarChart = (data) => {
     let categories: Date[] = [];
     let dataToReport = data.cards.filter((item) => item.dueComplete === true);
 
@@ -59,7 +61,7 @@ export default class ProductiveDays extends React.Component<
       element.type = element.labels[0].color;
     });
 
-    let seriesData = this.seriesDataGenerator(formattedDates, dataToReport);
+    let seriesData = seriesDataGenerator(formattedDates, dataToReport);
     const workData = seriesData.map((item) => item["yellow"]);
     const pdData = seriesData.map((item) => item["green"]);
     const miscData = seriesData.map((item) => item["blue"]);
@@ -118,7 +120,5 @@ export default class ProductiveDays extends React.Component<
       ],
     });
   };
-  render() {
-    return <div id="container" />;
-  }
-}
+  return <div id="container" />;
+};

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Box, Stack } from "@chakra-ui/core";
-import ProductiveDays from "../component/ProductiveDays";
+import { ProductiveDays } from "../component/ProductiveDays";
 import TotalProductivity from "../component/TotalProductivity";
 const axios = require("axios").default;
 
@@ -31,19 +31,22 @@ export default class Reports extends React.Component<
   };
 
   render() {
+    const data = this.state.data;
     return (
-      <Stack isInline align="center">
+      <>
         {this.state.data ? (
           <>
             <Box bg="grey" flex="1" p={4} color="white">
-              <ProductiveDays data={this.state.data} />
+              <ProductiveDays data={JSON.parse(JSON.stringify(data))} />
             </Box>
-            <Box bg="grey" flex="1" p={4} color="white">
-              <TotalProductivity data={this.state.data} />
-            </Box>
+            <Stack isInline spacing={0} align="center">
+              <Box bg="grey" flex="1" p={4} marginRight={0} color="white">
+                <TotalProductivity data={JSON.parse(JSON.stringify(data))} />
+              </Box>
+            </Stack>
           </>
         ) : null}
-      </Stack>
+      </>
     );
   }
 }
