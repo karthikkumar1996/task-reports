@@ -69,7 +69,7 @@ export default class TotalProductivity extends React.Component<
         {
           name: "Share",
           data: [
-            { name: "Work", y: dataToReport.yellow, color: "#2A69AC" },
+            { name: "Office Tasks", y: dataToReport.yellow, color: "#2A69AC" },
             {
               name: "Personal Development",
               y: dataToReport.green,

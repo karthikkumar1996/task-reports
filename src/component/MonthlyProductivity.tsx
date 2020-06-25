@@ -117,7 +117,7 @@ export const MonthlyProductivity: React.FunctionComponent<ReportsProps> = (
           color: "#322659",
         },
         {
-          name: "Work",
+          name: "Office Tasks",
           data: workData,
           color: "#2A69AC",
         },
