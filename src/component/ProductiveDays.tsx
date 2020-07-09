@@ -23,9 +23,6 @@ export const ProductiveDays: React.FunctionComponent<ProductiveDaysProps> = (
           results[index][data.type] += 1;
         }
       });
-      if (index === 31) {
-        return;
-      }
     });
 
     return results;
@@ -61,7 +58,9 @@ export const ProductiveDays: React.FunctionComponent<ProductiveDaysProps> = (
       element.type = element.labels[0].color;
     });
 
+    formattedDates = formattedDates.slice(formattedDates.length - 31);
     let seriesData = seriesDataGenerator(formattedDates, dataToReport);
+
     const workData = seriesData.map((item) => item["yellow"]);
     const pdData = seriesData.map((item) => item["green"]);
     const miscData = seriesData.map((item) => item["blue"]);
